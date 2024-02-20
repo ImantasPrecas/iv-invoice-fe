@@ -4,7 +4,7 @@ import LoginForm from '@/components/Auth/LoginForm';
 import RegistrationForm from '@/components/Auth/RegistrationForm';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
 
 function AuthenticationPage() {
   const location = useLocation();
@@ -30,7 +30,7 @@ function AuthenticationPage() {
           </Link>
         ) : (
           <Link
-            to='/'
+            to='/register'
             className={cn(
               buttonVariants({ variant: 'ghost' }),
               'absolute hidden md:grid right-4 top-4 md:right-8 md:top-8'
