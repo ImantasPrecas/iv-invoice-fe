@@ -8,17 +8,17 @@ import { Link, useLocation} from 'react-router-dom';
 
 function AuthenticationPage() {
   const location = useLocation();
-  let isLoggigIn = false;
+  let isLoggingIn = false;
   if (location.pathname === '/login') {
-    isLoggigIn = true;
+    isLoggingIn = true;
   } else {
-    isLoggigIn = false;
+    isLoggingIn = false;
   }
 
   return (
     <>
       <div className='container relative h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0'>
-        {!isLoggigIn ? (
+        {!isLoggingIn ? (
           <Link
             to='/login'
             className={cn(
@@ -68,7 +68,7 @@ function AuthenticationPage() {
               height='80px'
               className='flex justify-center w-full'
             />
-            {!isLoggigIn ? (
+            {!isLoggingIn ? (
               <>
               <AuthHeader
                 title='Create an account'

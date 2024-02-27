@@ -7,9 +7,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export async function requireAuth () {
-  const isAutencticated = false;
+  const isAuthenticated = false;
 
-  if(!isAutencticated){
+  if(!isAuthenticated){
     throw redirect('/login?message=You need to log in first')
   }
   return null

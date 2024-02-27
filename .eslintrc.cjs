@@ -8,11 +8,19 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'spellcheck'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
+    'spellcheck/spell-checker': [
+      'warn',
+      {
+        minLength: 4,
+        "strings": false,
+        skipWords: ['calc', 'radix', 'tailwindcss', 'keyframes', 'vite', 'pathname', 'clsx'],
+      },
+    ],
   },
-}
+};

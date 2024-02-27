@@ -20,29 +20,29 @@ function RegistrationForm({ className, ...props }: RegistrationForm) {
               User Name
             </Label>
             <Input
-              className={errors && errors.firstname ? 'border-red-500' : ''}
+              className={errors && errors.firstName ? 'border-red-500' : ''}
               type='text'
-              name='firstname'
-              id='firstname'
+              name='firstName'
+              id='firstName'
               placeholder='Name'
               autoCapitalize='none'
-              autoComplete='firstname'
+              autoComplete='firstName'
               autoCorrect='off'
               disabled={false}
             />
           </div>
           <div className='grid gap-1 sm:col-span-3'>
             <Label className='sr-only' htmlFor='email'>
-              User Lastname
+              User LastName
             </Label>
             <Input
-             className={errors && errors.lastname ? 'border-red-500' : ''}
+             className={errors && errors.lastName ? 'border-red-500' : ''}
               type='text'
-              name='lastname'
-              id='lastname'
+              name='lastName'
+              id='lastName'
               placeholder='Surname'
               autoCapitalize='none'
-              autoComplete='lastname'
+              autoComplete='lastName'
               autoCorrect='off'
               disabled={false}
             />

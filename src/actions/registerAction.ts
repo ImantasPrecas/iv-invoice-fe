@@ -1,8 +1,8 @@
 import { redirect, type ActionFunction } from 'react-router-dom';
 
 export interface IUser {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPass: string;
@@ -10,8 +10,8 @@ export interface IUser {
 
 export interface IRegisterError {
   password?: string;
-  firstname?: string;
-  lastname?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
   error?:string
 }
@@ -21,18 +21,18 @@ const BASE_URL = 'http://localhost:8080';
 export const RegisterAction: ActionFunction = async ({ request }) => {
   const userData = Object.fromEntries(await request.formData());
   const user: IUser = {
-    firstname: userData.firstname as string,
-    lastname: userData.lastname as string,
+    firstName: userData.firstName as string,
+    lastName: userData.lastName as string,
     email: userData.email as string,
     password: userData.password as string,
     confirmPass: userData.confirmPass as string,
   };
   const errors: IRegisterError = {};
-  if (typeof user.firstname !== 'string' || user.firstname.length < 3) {
-    errors.firstname = 'First name should be more than 3 characters';
+  if (typeof user.firstName !== 'string' || user.firstName.length < 3) {
+    errors.firstName = 'First name should be more than 3 characters';
   }
-  if (typeof user.firstname !== 'string' || user.lastname.length < 3) {
-    errors.lastname = 'Last name should be more than 3 characters';
+  if (typeof user.firstName !== 'string' || user.lastName.length < 3) {
+    errors.lastName = 'Last name should be more than 3 characters';
   }
   if (typeof user.email !== 'string' || !user.email.includes('@')) {
     errors.email = 'Email should be right format';
@@ -56,8 +56,8 @@ export const RegisterAction: ActionFunction = async ({ request }) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      firstname: user?.firstname,
-      lastname: user?.lastname,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
       email: user?.email,
       password: user?.password,
     }),
