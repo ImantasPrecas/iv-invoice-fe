@@ -18,23 +18,28 @@ import { loginLoader } from './loaders/loginLoader.tsx';
 /** Layouts */
 import Layout from './components/Layout.tsx';
 /** Functions */
-import { requireAuth } from './lib/utils.ts';
+import { authProvider, requireAuth } from './lib/utils.ts';
 
 
 
 
 const routes = [
   {
+    id: 'root',
     path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
     loader: async () => {
       await requireAuth()
-      return null
+      return {session: authProvider.session, userName: authProvider.userName}
     },
     children: [
       {
         index: true,
+        element: <DashboardPage />,
+      },
+      {
+        path: '/1',
         element: <DashboardPage />,
       },
     ],

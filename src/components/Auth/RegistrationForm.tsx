@@ -2,14 +2,14 @@ import { cn } from '@/lib/utils';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
-import { Form, useActionData } from 'react-router-dom';
+import { Form, useActionData, useNavigation } from 'react-router-dom';
 import { IRegisterError } from '../../actions/registerAction';
 
 interface RegistrationForm extends React.HtmlHTMLAttributes<HTMLDivElement> {}
 
 function RegistrationForm({ className, ...props }: RegistrationForm) {
   const errors = useActionData() as IRegisterError;
-  console.log('actionData: ', errors);
+  const navigation = useNavigation()
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
@@ -104,8 +104,8 @@ function RegistrationForm({ className, ...props }: RegistrationForm) {
               ))}
             </div>
           )}
-          <Button disabled={false} className='sm:col-span-6'>
-            Register
+          <Button disabled={navigation.state === 'submitting'} className='sm:col-span-6'>
+          {navigation.state === 'submitting' ? 'Submitting...' : 'Register'}
           </Button>
         </div>
       </Form>
