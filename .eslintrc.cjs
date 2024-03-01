@@ -14,13 +14,13 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    'spellcheck/spell-checker': [
-      'warn',
-      {
-        minLength: 4,
-        "strings": false,
-        skipWords: ['calc', 'radix', 'tailwindcss', 'keyframes', 'vite', 'pathname', 'clsx'],
-      },
-    ],
+    // 'spellcheck/spell-checker': [
+    //   'warn',
+    //   {
+    //     minLength: 4,
+    //     "strings": false,
+    //     skipWords: ['calc', 'radix', 'tailwindcss', 'keyframes', 'vite', 'pathname', 'clsx', 'DropdownMenu'],
+    //   },
+    // ],
   },
 };

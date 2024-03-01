@@ -33,7 +33,7 @@ export async function requireAuth () {
     throw redirect('/login?message=You need to log in first')
   }
   const session = JSON.parse(sessionData || '')
-  console.log('session: ', session)
+  // console.log('session: ', session)
   authProvider.isAuthenticated = true
   authProvider.session = session
   authProvider.userName = `${session.firstName} ${session.lastName}`

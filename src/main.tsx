@@ -19,6 +19,8 @@ import { loginLoader } from './loaders/loginLoader.tsx';
 import Layout from './components/Layout.tsx';
 /** Functions */
 import { authProvider, requireAuth } from './lib/utils.ts';
+import InvoicesPage from './routes/InvoicesPage.tsx';
+import ClientsPage from './routes/ClientsPage.tsx';
 
 
 
@@ -39,8 +41,12 @@ const routes = [
         element: <DashboardPage />,
       },
       {
-        path: '/1',
-        element: <DashboardPage />,
+        path: '/invoices',
+        element: <InvoicesPage />,
+      },
+      {
+        path: '/clients',
+        element: <ClientsPage />,
       },
     ],
   },
