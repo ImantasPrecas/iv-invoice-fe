@@ -1,5 +1,5 @@
 import { Form, useRouteLoaderData } from 'react-router-dom';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,9 +8,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
+} from '../ui/dropdown-menu';
 import { ISession } from '@/lib/utils';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
 
 const UserNav = () => {
