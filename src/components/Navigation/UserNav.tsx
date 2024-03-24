@@ -30,7 +30,7 @@ const UserNav = () => {
         <DropdownMenuLabel className='font-normal'>
             <div className='flex flex-col space-y-1'>
                 <p className='text-sm font-medium leading-none'>{session.firstName} {session.lastName}</p>
-                <p className='text-xs leading-none text-muted-foreground'>example@example.lt</p>
+                <p className='text-xs leading-none text-muted-foreground'>{session.email}</p>
             </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator/>

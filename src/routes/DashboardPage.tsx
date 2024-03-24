@@ -1,7 +1,11 @@
+import NewUserAccModal from "@/components/NewUserAccModal"
 
 function DashboardPage() {
   return (
+    <>
+  <NewUserAccModal/>
     <div>DashboardPage</div>
+    </>
   )
 }
 

@@ -7,6 +7,8 @@ import { loginUser } from '@/api/api';
 export interface ISession {
   firstName: string,
   lastName: string,
+  email: string,
+  isNew: boolean,
   token: string,
 }
 
@@ -18,11 +20,14 @@ export interface ICredentials {
 interface IAuthProvider {
   isAuthenticated: boolean;
   userName: string | null;
+  email: string | null;
   session: ISession | null
   token: string | null;
+  isProfileUpdated: boolean
   logIn(credentials: ICredentials): Promise<void>;
   logOut(): Promise<void>
 }
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -43,12 +48,17 @@ export async function requireAuth () {
 export const authProvider: IAuthProvider = {
   isAuthenticated: false,
   userName: null,
+  email: null,
   token: null,
   session: null,
+  isProfileUpdated: false,
   async logIn(credentials) {
       const userData = await loginUser(credentials)
+      console.log('userData', userData)
       authProvider.isAuthenticated =true
       authProvider.userName = `${userData.firstName} ${userData.lastName}`
+      authProvider.email = userData.email
+      authProvider.isProfileUpdated = userData.isProfileUpdated
       authProvider.token = userData.token
       localStorage.setItem('session', JSON.stringify(userData));
   },

@@ -21,9 +21,7 @@ import Layout from './components/Layout.tsx';
 import { authProvider, requireAuth } from './lib/utils.ts';
 import InvoicesPage from './routes/InvoicesPage.tsx';
 import ClientsPage from './routes/ClientsPage.tsx';
-
-
-
+import { editUserProfile } from './actions/editUserProfile.ts';
 
 const routes = [
   {
@@ -48,6 +46,10 @@ const routes = [
         path: '/clients',
         element: <ClientsPage />,
       },
+      {
+        path: '/editUserProfile',
+        action: editUserProfile
+      }
     ],
   },
   {
