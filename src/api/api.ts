@@ -1,4 +1,7 @@
+import { FormDataObject } from "@/actions/editUserProfile";
+
 const BASE_URL = 'http://localhost:8080';
+
 
 export async function loginUser(credentials: {
   email: string;
@@ -23,14 +26,39 @@ export async function loginUser(credentials: {
       status: res.status,
     };
   }
+  console.log(data);
   return data;
 }
 
-export async function postEditUserProfile(userData: FormData, token:string) {
+export async function getUserProfile(userId: string, token: string){
+    const url = `${BASE_URL}/user/${userId}`;
+
+  const fetchOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const res = await fetch(url, fetchOptions);
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw {
+      message: data.message,
+      statusText: res.statusText,
+      status: res.status,
+    };
+  }
+  console.log(data);
+  return data;
+  }
+
+export async function postEditUserProfile(userData: FormDataObject, token:string) {
   const url = `${BASE_URL}/user/update`;
 
   const fetchOptions = {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

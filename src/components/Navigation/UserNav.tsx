@@ -1,4 +1,4 @@
-import { Form, useRouteLoaderData } from 'react-router-dom';
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import {
   DropdownMenu,
@@ -16,6 +16,11 @@ import { Link } from 'react-router-dom';
 const UserNav = () => {
   const { session } = useRouteLoaderData('root') as { session: ISession };
   const userInitials = `${session.firstName[0]}${session.lastName[0]}`;
+  const navigate = useNavigate()
+  const handleLogout = async () => {
+    await localStorage.removeItem('session');
+    navigate('/login', { replace: true });
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,24 +33,36 @@ const UserNav = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56' align='end' forceMount>
         <DropdownMenuLabel className='font-normal'>
-            <div className='flex flex-col space-y-1'>
-                <p className='text-sm font-medium leading-none'>{session.firstName} {session.lastName}</p>
-                <p className='text-xs leading-none text-muted-foreground'>{session.email}</p>
-            </div>
+          <div className='flex flex-col space-y-1'>
+            <p className='text-sm font-medium leading-none'>
+              {session.firstName} {session.lastName}
+            </p>
+            <p className='text-xs leading-none text-muted-foreground'>
+              {session.email}
+            </p>
+          </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator/>
+        <DropdownMenuSeparator />
         <DropdownMenuGroup>
-            <DropdownMenuItem>
-                <Link className='w-full' to='/profile'>Profile</Link>
-            </DropdownMenuItem>
-        <DropdownMenuSeparator/>
-        <DropdownMenuItem>
-            <Form action='/logout' className='w-full'>
-                <Button variant='ghost' type='submit' className='pl-0 w-full justify-start'>Logout</Button>
-            </Form>
-        </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link className='w-full' to='/profile'>
+              Profile
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            {/* <Form action='logoutttt' replace className='w-full'> */}
+              <Button
+              onClick={handleLogout}
+                variant='ghost'
+                type='submit'
+                className='pl-0 w-full justify-start'
+              >
+                Logout
+              </Button>
+            {/* </Form> */}
+          </DropdownMenuItem>
         </DropdownMenuGroup>
-        
       </DropdownMenuContent>
     </DropdownMenu>
   );

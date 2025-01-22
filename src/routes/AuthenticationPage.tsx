@@ -4,10 +4,11 @@ import LoginForm from '@/components/Auth/LoginForm';
 import RegistrationForm from '@/components/Auth/RegistrationForm';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Link, useLocation} from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function AuthenticationPage() {
   const location = useLocation();
+
   let isLoggingIn = false;
   if (location.pathname === '/login') {
     isLoggingIn = true;
@@ -70,19 +71,19 @@ function AuthenticationPage() {
             />
             {!isLoggingIn ? (
               <>
-              <AuthHeader
-                title='Create an account'
-                description=' Enter your credentials below to create your account'
-              />
-              <RegistrationForm />
+                <AuthHeader
+                  title='Create an account'
+                  description=' Enter your credentials below to create your account'
+                />
+                <RegistrationForm />
               </>
             ) : (
               <>
-              <AuthHeader
-                title='Login to an account'
-                description=' Enter your credentials below to log in to your account'
-              />
-              <LoginForm/>
+                <AuthHeader
+                  title='Login to an account'
+                  description=' Enter your credentials below to log in to your account'
+                />
+                <LoginForm />
               </>
             )}
 

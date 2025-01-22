@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { Separator } from './ui/separator';
-import { Form, useSubmit } from 'react-router-dom';
+import { Form, useNavigation, useSubmit } from 'react-router-dom';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
@@ -18,15 +18,16 @@ interface FormatedField {
   code: number;
   title: string;
 }
-// interface FormDataObject {
-//   [key: string]: FormDataEntryValue | FormatedField[] | undefined;
-// }
 
 const NewUserAccModal = () => {
-  const { session, isProfileUpdated } = authProvider;
-
+  const { session, user } = authProvider;
   const [typeFields, setTypeFields] = useState<Input[]>([{ id: 0, value: '' }]);
   const submit = useSubmit();
+  // const errors = useActionData()
+  const navigation = useNavigation();
+
+  console.log('session: ', session);
+  console.log('user: ', user);
 
   const addTypeFieldHandler: React.MouseEventHandler<HTMLButtonElement> = (
     e
@@ -50,7 +51,7 @@ const NewUserAccModal = () => {
     setTypeFields(newInputs);
   };
 
-  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const formatedTypeFields: FormatedField[] = [];
@@ -71,15 +72,22 @@ const NewUserAccModal = () => {
 
     // console.log(data);
 
-    submit(formData, {
-      method: 'post',
-      action: '/editUserProfile',
-      navigate: false,
-    });
+    try {
+      const response = await submit(formData, {
+        method: 'post',
+        action: '/editUserProfile',
+        navigate: false,
+      });
+
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <Dialog defaultOpen={!isProfileUpdated}>
+    // <Dialog defaultOpen={user?.iaRegistration === ''}>
+    <Dialog defaultOpen={true}>
       <DialogContent className='max-w-[700px]'>
         <DialogHeader>
           <DialogTitle>Update Profile</DialogTitle>
@@ -216,7 +224,7 @@ const NewUserAccModal = () => {
             </div>
             <Button
               type='submit'
-              // disabled={navigation.state === 'submitting'}
+              disabled={navigation.state === 'submitting'}
               className='col-span-6'
             >
               Submit
