@@ -15,6 +15,7 @@ import { RegisterAction } from './actions/registerAction.ts';
 import { loginAction } from './actions/loginAction.ts';
 /** Loaders */
 import { loginLoader } from './loaders/loginLoader.tsx';
+import { invoiceLoader } from './loaders/invoiceLoader.tsx';
 /** Layouts */
 import Layout from './components/Layout.tsx';
 /** Functions */
@@ -43,6 +44,7 @@ const routes = [
       {
         path: '/invoices',
         element: <InvoicesPage />,
+        loader: invoiceLoader,
       },
       {
         path: '/clients',
